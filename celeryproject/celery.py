@@ -2,6 +2,7 @@ import os
 
 from celery import Celery
 from time import sleep
+from celery.schedules import crontab
 
 # Set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'celeryproject.settings')
@@ -26,7 +27,7 @@ def add(x,y):
 app.conf.beat_schedule = {
     'clear-session-cache-every-10sec' : {
         'task' : "myapp.tasks.clear_session_cache",
-        "schedule": 20,
+        "schedule": crontab(minute='*/1'),
         'args' : ('11111', )
     }
 }
