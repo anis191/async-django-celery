@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Result Detail Page</title>
 </head>
 <body>
 
@@ -15,11 +15,13 @@
         </ul>
     </nav>
 
-    <h1 style="color: blue; text-align: center;">Home Page</h1>
+    <h1 style="color: green; text-align: center;">Result Detail Page</h1>
     <hr>
-    {% if result.id %}
-    <p>Task ID: {{ result.id }}</p>
-    <a href="{% url 'check_result' result.id %}">Check Task Result</a>
+    {% if result %}
+    <h4>Task ID: {{ result.id }}</h4>
+    <h4>Task State: {{ result.state }}</h4>
+    <h4>Task Status: {{ result.status }}</h4>
+    <h4>Result Value: {{ result.result }}</h4>
     {% endif %}
 
 </body>

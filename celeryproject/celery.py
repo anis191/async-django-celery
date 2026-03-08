@@ -19,5 +19,5 @@ app.autodiscover_tasks()
 
 @app.task
 def add(x,y):
-    sleep(20)
+    sleep(10)
     return x + y
