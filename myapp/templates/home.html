@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+
+    <nav style="background-color: black; padding: 10px;">
+        <ul style="list-style: none; display: flex; gap: 20px;">
+            <li><a href="{% url 'home' %}" style="color: white; text-decoration: none;">Home</a></li>
+            <li><a href="{% url 'about' %}" style="color: white; text-decoration: none;">About</a></li>
+            <li><a href="{% url 'contact' %}" style="color: white; text-decoration: none;">Contact</a></li>
+        </ul>
+    </nav>
+
+    <h1 style="color: blue; text-align: center;">Home Page</h1>
+    <hr>
+
+</body>
+</html>
