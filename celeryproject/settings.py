@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 import os
 from pathlib import Path
 from decouple import config
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -126,5 +128,17 @@ REDIS_PORT = config("REDIS_PORT", cast=int)
 # Broker
 CELERY_BROKER_URL = f"redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}/0"
 # Result Backend
-CELERY_RESULT_BACKEND = f"redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}/0"
+# CELERY_RESULT_BACKEND = f"redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}/0"
+# Use Result Backend "django-db":
+CELERY_RESULT_BACKEND = 'django-db'
 CELERY_TIMEZONE = "Asia/Dhaka"
+CELERY_RESULT_EXTENDED = True
+
+CELERY_BEAT_SCHEDULE = {
+    'clear-session-cache-every-10sec' : {
+        'task' : "myapp.tasks.clear_session_cache",
+        # "schedule": crontab(hour=0, minute=0),
+        "schedule": 10,
+        'args' : ('11111', )
+    }
+}

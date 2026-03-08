@@ -5,3 +5,8 @@ from time import sleep
 def sub(x,y):
     sleep(10)
     return x - y
+
+@shared_task
+def clear_session_cache(id):
+    print(f"clear session cache: {id}")
+    return id
