@@ -21,3 +21,12 @@ app.autodiscover_tasks()
 def add(x,y):
     sleep(10)
     return x + y
+
+# Periodic Task:
+app.conf.beat_schedule = {
+    'clear-session-cache-every-10sec' : {
+        'task' : "myapp.tasks.clear_session_cache",
+        "schedule": 20,
+        'args' : ('11111', )
+    }
+}

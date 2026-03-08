@@ -134,11 +134,12 @@ CELERY_RESULT_BACKEND = 'django-db'
 CELERY_TIMEZONE = "Asia/Dhaka"
 CELERY_RESULT_EXTENDED = True
 
+'''
 CELERY_BEAT_SCHEDULE = {
     'clear-session-cache-every-10sec' : {
         'task' : "myapp.tasks.clear_session_cache",
-        # "schedule": crontab(hour=0, minute=0),
         "schedule": 10,
         'args' : ('11111', )
     }
 }
+'''
